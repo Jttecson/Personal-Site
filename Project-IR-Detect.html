@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+
+Template 2082 Pure Mix
+
+http://www.tooplate.com/view/2082-pure-mix
+
+-->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+
+  <!-- Site title
+   ================================================== -->
+  <title>Joel Tecson - IR-Detect</title>
+
+  <!-- Bootstrap CSS
+   ================================================== -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+
+  <!-- Animate CSS
+   ================================================== -->
+  <link rel="stylesheet" href="css/animate.min.css">
+
+  <!-- Font Icons CSS
+   ================================================== -->
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/ionicons.min.css">
+
+  <!-- Main CSS
+   ================================================== -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Google web font 
+   ================================================== --> 
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
+  
+</head>
+<body>
+
+
+<!-- Preloader section
+================================================== -->
+<div class="preloader">
+
+  <div class="sk-spinner sk-spinner-pulse"></div>
+
+</div>
+
+
+<!-- Navigation section
+================================================== -->
+<div class="nav-container">
+   <nav class="nav-inner transparent">
+
+      <div class="navbar">
+         <div class="container">
+            <div class="row">
+
+              <div class="brand">
+                <a href="index.html">Joel Tecson</a>
+              </div>
+
+              <div class="navicon">
+                <div class="menu-container">
+
+                  <div class="circle dark inline">
+                    <i class="icon ion-navicon"></i>
+                  </div>
+
+                  <div class="list-menu">
+                    <i class="icon ion-close-round close-iframe"></i>
+                    <div class="intro-inner">
+                      <ul id="nav-menu">
+                         <li><a href="index.html">Home</a></li>
+                         <li><a href="about.html">About</a></li>
+                         <li><a href="blog.html">Blog</a></li>
+                         <li><a href="contact.html">Contact</a></li>
+                      </ul>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+         </div>
+      </div>
+
+   </nav>
+</div>
+
+
+<!-- Header section
+================================================== -->
+<section id="header" class="header-four">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
+               <div class="header-thumb">
+                   <h1 class="wow fadeIn" data-wow-delay="0.5s">IR-Detect</h1>
+  <!--                 <h3 class="wow fadeInUp" data-wow-delay="1.9s">Nulla scelerisque lectus urna</h3> -->
+               </div>
+      </div>
+
+    </div>
+  </div>    
+</section>
+
+
+<!-- Single Project section
+================================================== -->
+<section id="single-project">
+   <div class="container">
+      <div class="row">
+
+         <div class="wow fadeInUp col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-4">
+      <div class="project-info">
+        <h4>Type of Project</h4>
+        <porig>Subproject of <a href="Project-Robot.html">Robot</a></porig>
+      </div>
+      <div class="project-info">
+        <h4>Date</h4>
+        <porig> Jul 2018 </porig> <br>
+      </div>
+      <div class="project-info">
+        <h4>Category</h4>
+        <porig> Circuits/Signals </porig>
+      </div>
+      <div class="project-info">
+        <h4> Skills Used </h4>
+        <ul style="list-style-type:circle">
+          <li> <porig> PCB Design </porig> </li>
+        </ul>
+        </div>
+    </div>
+
+    <div class="wow col-md-7 col-sm-7" data-wow-delay="0s">
+            <h2> Objective </h2>
+            <p> For context, visit <a href="Project-Robot.html">Project-Robot</a>. </p>
+            <p> The third obstacle in the Robot Competition Course was a timing-protected gate, indicated by an IR emittor facing the path. When a 10kHz signal was omitted, it was safe to pass through the gate. When a 1kHz was omitted, however, it was not safe. If a robot passed the gate when the 1kHz signal was on, a switch would trigger and the next platform would begin rotating. This made navigation extremely difficult; every robot team planned to only enter when it was safe. </p>
+
+            <p> The IR Sensor had to detect the IR signals while being resistant to slight changes in distance and angle, as our robot would end up in a slightly different position each time. I designed the circuit to detect both 1kHz and 10kHz to increase confidence as to which signal was being omitted. </p>
+
+            <p> Commercial off-the-shelf sensors were, of course, prohibited. </p>
+
+            <h2> Design Details </h2>
+            <p> The signal was detected by a QSD124 phototransistor and was split into the 1kHz and 10kHz processing circuits. </p>
+            <h3> Why not process the signal in software? </h3>
+            <p> The microcontroller had very low computing power, and would not be able to process the data quickly. Every second counted in this competition, as it was very difficult to complete the course in the alloted 2 minutes. The 10kHz 'go' signal was also only emitted for a few seconds; as the robot itself requires time to pass through the gate, we needed to detect the signal change immediately. </p>
+            <p> Additionally, if there were large DC offset, then processing in purely software would not be possible as the analog input port on the microcontroller would be saturated at 5V. So I implemented purely hardware processing. </p>
+
+            <h3> Amplification and Filtering </h3>
+            <p> The first op-amp in both circuits acts as an amplifying active band-pass filter. The series RC circuit acts as a high-pass filter, with low frequency signals getting blocked by the capacitor. The parallel RC circuit acts as a low-pass, with high frequency signals getting "shorted" to ground. </p>
+
+            <h3> Rectifying </h3>
+            <p> The second op-amp in both circuits acts as a precision rectifier, or super-diode. As the name implies, it allows for a higher precision of signal processing as it lacks the voltage drop of a normal, forward-biased diode. With regards to our circuit, it allows for a faster "charging" and slower "decay" of our DC output signal. </p>
+
+            <h3> Peak Detecting </h3>
+            <p> Because of the rectifier, we can attach a parallel RC circuit to allow for peak detection. The capacitor charges when the input wave is high. When the input wave is slow, the capcitor discharges slowly, due to the high impedance of the circuit. After several cycles the voltage on the capacitor closely reflects the peak of the input waveform.</p>
+            <p> The output from the peak detector circuit was connected straight into the analog input port on the microcontroller. </p>
+
+
+            <h2> Manufacturing </h2>
+            <p> As it turned out, our course provided us with pre-lined PCBs for free, and we just had to layout our components on the board and solder them in. However, I'm still grateful for the EDA practice as I'm sure it will be useful for future design jobs where I will actually manufacture the PCBs. </p>
+
+            <h2> Performance </h2>
+            <p> Our IR circuit worked flawlessly before and throughout the competition, and we were one of the few groups to not have any issues regarding IR sensing. </p>
+    </div>
+
+      </div>
+   </div>
+</section>
+
+
+<!-- Footer section
+================================================== -->
+<footer>
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-12 col-sm-12">
+        <p class="wow fadeInUp"  data-wow-delay="0.3s">Copyright © 2016 Your Company Name - Designed by Tooplate</p>
+        <ul class="social-icon wow fadeInUp"  data-wow-delay="0.6s">
+          <li><a href="#" class="fa fa-facebook"></a></li>
+          <li><a href="#" class="fa fa-twitter"></a></li>
+          <li><a href="#" class="fa fa-dribbble"></a></li>
+          <li><a href="#" class="fa fa-behance"></a></li>
+          <li><a href="#" class="fa fa-google-plus"></a></li>
+        </ul>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+
+
+<!-- Javascript 
+================================================== -->
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/wow.min.js"></script>
+<script src="js/custom.js"></script>
+
+</body>
+</html>

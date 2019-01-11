@@ -122,7 +122,7 @@ http://www.tooplate.com/view/2082-pure-mix
          <div class="wow fadeInUp col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-4">
       <div class="project-info">
         <h4>Type of Project</h4>
-        <porig>Internship</porig>
+        <porig>Contract/Personal Project</porig>
       </div>
       <div class="project-info">
         <h4>Date</h4>
@@ -138,20 +138,21 @@ http://www.tooplate.com/view/2082-pure-mix
           <li> <porig> Signal Processing </porig> </li>
           <li> <porig> Product Design </porig></li>
           <li> <porig> Swift Development </porig> </li>
+          <li> <porig> Multithreading </porig> </li>
         </ul>
         </div>
     </div>
 
-    <div class="wow fadeInUp col-md-7 col-sm-7" data-wow-delay="0s">
+    <div class="wow col-md-7 col-sm-7" data-wow-delay="0s">
             <h2> Objective </h2>
-            <p> During my upbringing playing musical instruments, I noticed that there's a lack of inexpensive, reliable sound-based digital tuners (often the best are vibration-based). Generally, they're expensive and unreliable in the presence of background noise. Additionally, I've been unable to find a tuner which accurately measures variation in pitch over very small time intervals (such as that during vibrato). </p>
+            <p> The first half of this project (note detection) was produced for MoozX Internet Ventures Inc. to be integrated into their iOS app <a href="https://itunes.apple.com/US/app/id655651733?mt=8">Woodshed</a>, a guitar learning platform with thousands of downloads. I am currently implementing the same algorithm into my independent tuner app. </p>
+            <p> During my upbringing playing musical instruments, I noticed that there was a lack of inexpensive, reliable sound-based digital tuners (often the best are vibration-based). Generally, they're expensive and unreliable in the presence of background noise. Additionally, I've been unable to find a tuner which accurately measures variation in pitch over very small time intervals (such as that during vibrato). </p>
 
             <p> So I decided to develop an iOS tuning app with two main features: </p>
             <ul style="list-style-type:disk">
               <li> <p> Undisturbed functionality in the presence of non-musical background noise ("white noise") or soft musical background noise </p> </li>
-              <li> <p> Accurate recreation of vibrato waveforms at medium tempos (2 Hz) for review during practice </p></li>
+              <li> <p> Accurate recreation of vibrato waveforms at low-medium tempos (2 Hz) for review during practice </p></li>
             </ul>
-
 
             <h2> Design Details </h2>
             <p> For this project I implemented the <a href="http://miracle.otago.ac.nz/tartini/papers/A_Smarter_Way_to_Find_Pitch.pdf">Mcleod Pitch Method</a> as it provides a fast, accurate, and robust method, capable of tracking a musician's (or vocalist's) vibrato. </p>
@@ -160,34 +161,27 @@ http://www.tooplate.com/view/2082-pure-mix
             <h3> Normalized Square Difference Function </h3>
             <p> The algorithm then calculates the Square Difference Function by, unsurprisingly, squaring the difference of the data with its delayed version. This SDF terms are large when the difference between the data and its delayed term is large, in contrast to the ACF. </p>
             <p> The Normalized Square Difference Terms are calculated last, dividing the SDF terms by the ACF terms. This causes data terms which have large delayed terms with similar magnitude to dominate. </p>
-            <p> Qualitatively, the NSDF terms drastically reduce random noise. This enables the crucial of the algorithm: peak detection. </p>
+            <p> Qualitatively, the NSDF terms drastically reduce aperiodic noise. This enables the crucial part of the algorithm: peak detection. </p>
             <h3> Peak-Picking </h3>
-            <p> After calculating the NSDF terms, the algorithm attempts to the find fundamental frequency f<sub>0</sub>. This is made more difficult by the existence of many harmonics in naturally produced music. To filter these, a threshold is chosen as a fraction of the highest maximum present in the waveform, and peaks beneath the threshold are discarded. The NSDF creates an "artificial" peak at delay 0 and is ignored. </p>
-            <p> The first of the remaining peaks is chosen and its delay is used as the wavelength corresponding to f<sub>0</sub>. It is important to use the first peak rather than, for example, the last peak and dividing by the quantity of peaks. The latter method may appear to provide a more accurate, consistent value due to averaging over more data. It is unreliable, however, due to false positive and missing peaks caused by the interference of f<sub>0</sub> and its harmonics. </p>
+            <p> After calculating the NSDF terms, the algorithm attempts to the find fundamental frequency, f<sub>0</sub>. This is made more difficult by the existence of many harmonics in naturally produced music. To filter these, a threshold is chosen as a fraction of the highest maximum present in the waveform, and peaks beneath the threshold are discarded. The NSDF creates an "artificial" peak at delay 0 and is ignored. </p>
+            <p> The first of the remaining peaks is chosen and its delay is used as the wavelength corresponding to f<sub>0</sub>. It is important to use the first peak rather than, for example, the last peak and dividing by the quantity of peaks. The latter method may appear to provide a more accurate, consistent value due to averaging over more data; it is unreliable, however, due to false positive and negative peaks caused by the interference of f<sub>0</sub> and its harmonics. </p>
             <p> Lastly, the pitch is calculated from f<sub>0</sub> by the simple logarithmic conversion used in the 12-tone scale. </p>
-
+            <img src="images/Raw.png" alt="Raw" style="width:315px;height:250px;">
+            <img src="images/NSDF.png" alt="NSDF" style="width:315px;height:250px;"> <br> <br>
+            <psmall> Figure 1. Data taken from me singing a C3. On the left is the raw sampled data vs. time, on the right is the processed NSDF data vs. delay. </psmall>
             <h3> Sampling </h3>
-            <p> I chose a sample rate 44.1kHz. By the Nyquist Sampling Theorem, this is enough resolution to recreate the highest note on a piano - definitely sufficient for the app. </p>
-            <p> To measure vibrato, the sample rate is relatively unimportant; the frequency is much too low for sampling to be an issue. Rather, the rate at which data is processed is relevant. Again by the Nyquist Sampling Theorem, sampled data must be processed at least 4 times a second. To perform this in the app, I sample and call the pitch algorithm in separate threads due to the significant overlap in timing. </p>
+            <p> I chose a sample rate of 44.1kHz. By the Nyquist Sampling Theorem, this is enough resolution to recreate the highest note on a piano - definitely sufficient for the app. </p>
+            <p> To measure vibrato, the sample rate is relatively unimportant; the frequency at which the pitch oscillates is much too low for sampling to be an issue. Rather, the rate at which data is processed is relevant. Again by the Nyquist Sampling Theorem, sampled data must be processed at least 4 times a second. To perform this in the app, I sample and call the pitch algorithm in separate threads due to the significant overlap in timing. </p>
 
-            <h2> Improvements and Future Models </h2>
-            <p>  </p>
-
-            <ul style="list-style-type:disk">
-              <li> <p>  </p> </li>
-              <li> <p> Accurate recreation of vibrato waveforms at medium-high tempos (3 Hz) for review during practice </p></li>
-            </ul>
-            <p> Flow 1.0 was released in August 2018, right at the end of my time at JABT Labs, and multiple updates were released during the months before this - about a release every two weeks at its busiest. Because of this, I was responsible for rapid feature development and bugfixes. </p>
-            <p> Upon my arrival to the company, Flow was a very new project and had lackluster test coverage. As such, I created and maintained much of the (back-end) testing infrastructure for the project. </p>
-            <h2> Achievements </h2>
-            <p> There are a few contributions I made to the project worth special mention: </p>
-            <ul>
-                <li> <p> Developing, testing, and redesigning the timeline, layer, and keyframe operations within the timeline. Check out some <a href="https://createwithflow.com/features">Flow features</a>.</p></li>
-                <li> <p> Writing a script to automate the release process, reducing release time by 92%. </p></li>
-                <li> <p> Creating and maintaining testing infrastructure for app's back-end as well as fixing and maintaining integration with Jenkins CI.  </p></li>
-            </ul>
-            <p> 
-
+            <h2> iOS Threading Issues </h2>
+            <p> I chose a 75% overlap in time between sampling windows to accurately measure changes in pitch. In iOS, developers access the micropone though AVAudioRecorder objets, and the recorded waveforms are unavailable while recording. Because of this, I used different threads to poll the mic input for each sample window for the fastest response time. </p>
+            <p> iOS makes no guarantees over updating UI on threads other than the main thread. As such, I initally kept most of the logic on the main thread. This still led to inconsistency with updating the UI; it was only after researching more on iOS threading that I understood why. There is no flushing of UI updates to the screen in iOS; its runloop does not exist on the main queue with the tasks that I called. Hence as the queue constantly had blocks on it, the main thread was never cleared and the UI did not update. </p>
+            <p> Another option was to use a Timer. In iOS, however, Timers do not iterate consistently for time periods ~100ms or less. </p>
+            <p> Ultimately I wrote a method which queued recursive calls asynchronously to start the next recording. This ended up being significantly more elegant than my previous attempts - turns out Apple knows what they're doing. </p>
+            <h2> Distribution </h2>
+            <p> The back-end is essentially complete, and will soon be integrated into <a href="https://itunes.apple.com/US/app/id655651733?mt=8">Woodshed</a>. </p>
+            <p> Remaining for Vibratune is a usable UI and, once complete, will be released as well. </p>
+            <p> Check out my source code for VibraTune <a href="https://github.com/Jttecson/VibraTune">here</a>. </p>
     </div>
 
       </div>
