@@ -109,6 +109,11 @@ img {
   max-width: 100%;
 }
 
+img.small {
+  width: 50%;
+  max-width: 50%;
+}
+
 
 /* preloader styles
 /* ========================================== */
