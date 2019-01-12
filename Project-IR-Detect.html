@@ -17,6 +17,8 @@ http://www.tooplate.com/view/2082-pure-mix
   <!-- Site title
    ================================================== -->
    <title>Joel Tecson - IR-Detect</title>
+<link rel="icon" href="favicon1.ico?" type="image/x-icon" />
+<link rel="shortcut icon" href="favicon1.ico?" type="image/x-icon" />
 
   <!-- Bootstrap CSS
    ================================================== -->
@@ -154,6 +156,8 @@ http://www.tooplate.com/view/2082-pure-mix
       <p> The microcontroller had very low computing power, and would not be able to process the data quickly. Every second counted in this competition, as it was very difficult to complete the course in the alloted 2 minutes. The 10kHz 'go' signal was also only emitted for a few seconds; as the robot itself requires time to pass through the gate, we needed to detect the signal change immediately. </p>
       <p> Additionally, if there were large DC offset, then processing in purely software would not be possible as the analog input port on the microcontroller would be saturated at 5V. So I implemented purely hardware processing. </p>
 
+      <img src="images/IR-Schematic.png" class="img-responsive" alt="Single Project">
+      <psmall> Schematic for IR sensing circuit</psmall>
       <h3> Amplification and Filtering </h3>
       <p> The first op-amp in both circuits acts as an amplifying active band-pass filter. The series RC circuit acts as a high-pass filter, with low frequency signals getting blocked by the capacitor. The parallel RC circuit acts as a low-pass, with high frequency signals getting "shorted" to ground. </p>
 
@@ -165,6 +169,8 @@ http://www.tooplate.com/view/2082-pure-mix
       <p> The output from the peak detector circuit was connected straight into the analog input port on the microcontroller. </p>
 
 
+      <img src="images/IR-Board.png" class="img-responsive" alt="Single Project">
+      <psmall> Board file for IR sensing circuit</psmall>
       <h2> Manufacturing </h2>
       <p> As it turned out, our course provided us with pre-lined PCBs for free, and we just had to layout our components on the board and solder them in. However, I'm still grateful for the EDA practice as I'm sure it will be useful for future design jobs where I will actually manufacture the PCBs. </p>
 
