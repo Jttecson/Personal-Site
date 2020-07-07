@@ -229,6 +229,12 @@ def plot_hw_model(df_train, df_test, periods, col="Close", summary=True, seasona
             <h3>Autoregressive Integrated Moving Average (ARIMA)</h3>
             <p>ARIMA models can be very effective for short-term forecasting. Like Holt-Winters, ARIMA is a univariate model, which performs well when underlying factors (disposable income, travel laws) do not change in behaviour. </p>
             <p>We use a seasonal ARIMA model to attempt to capture the semi-regular spikes in the test series. ARIMA models require time series to be made stationary through differencing - below are the ACF plots for the time series and it’s first two differenced series.</p>
+            <img src="images/ACF_TS.png" class="img-responsive">
+            <psmall>Autocorrelation plot of the time series</psmall>
+            <img src="images/ACF_1.png" class="img-responsive">
+            <psmall>Autocorrelation plot of the first difference</psmall>
+            <img src="images/ACF_2.png" class="img-responsive">
+            <psmall>Autocorrelation plot of the second difference</psmall>
             <p>In both cases, the first correlation is somewhat large; however, this is not improved when taking additional differences (and indeed, we don’t expect to have to take more than two differences for most time series).</p>
             <p>We see that the time series is clearly not stationary. Additionally, first difference has somewhat sinusoidal autocorrelations, implying seasonality. Thus, we use a value of d=2.</p>
             <h4>Code</h4>
