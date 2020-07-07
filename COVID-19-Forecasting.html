@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+
+Template 2082 Pure Mix
+
+http://www.tooplate.com/view/2082-pure-mix
+
+-->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+
+	<!-- Site title
+   ================================================== -->
+	<title>Joel Tecson - Covid-19 Stock Forecasting</title>
+<link rel="icon" href="favicon1.ico?" type="image/x-icon" />
+<link rel="shortcut icon" href="favicon1.ico?" type="image/x-icon" />
+	<!-- Bootstrap CSS
+   ================================================== -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+
+	<!-- Animate CSS
+   ================================================== -->
+	<link rel="stylesheet" href="css/animate.min.css">
+
+	<!-- Font Icons CSS
+   ================================================== -->
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/ionicons.min.css">
+
+	<!-- Main CSS
+   ================================================== -->
+	<link rel="stylesheet" href="css/style.css">
+
+	<!-- Google web font 
+   ================================================== -->	
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
+	
+</head>
+<body>
+
+
+<!-- Preloader section
+================================================== -->
+<div class="preloader">
+
+	<div class="sk-spinner sk-spinner-pulse"></div>
+
+</div>
+
+
+<!-- Navigation section
+================================================== -->
+<div class="nav-container">
+   <nav class="nav-inner transparent">
+
+      <div class="navbar">
+         <div class="container">
+            <div class="row">
+
+              <div class="brand">
+                <a href="index.html">Joel Tecson</a>
+              </div>
+
+              <div class="navicon">
+                <div class="menu-container">
+
+                  <div class="circle dark inline">
+                    <i class="icon ion-navicon"></i>
+                  </div>
+
+                  <div class="list-menu">
+                    <i class="icon ion-close-round close-iframe"></i>
+                    <div class="intro-inner">
+                     	<ul id="nav-menu">
+                         <li><a href="index.html">Home</a></li>
+                       	 <li><a href="about.html">About</a></li>
+                       	 <li><a href="blog.html">Blog</a></li>
+                       	 <li><a href="contact.html">Contact</a></li>
+                      </ul>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+         </div>
+      </div>
+
+   </nav>
+</div>
+
+
+<!-- Header section
+================================================== -->
+<section id="header" class="header-six">
+	<div class="container">
+		<div class="row">
+
+			<div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
+           		 <div class="header-thumb">
+              		 <h1 class="wow fadeIn" data-wow-delay="0.5s">Covid-19 Air Canada Stock Recovery</h1><!-- <h1>Evaluating Short-Term Time-Series Techniques</h1> -->
+           		 </div>
+			</div>
+
+		</div>
+	</div>		
+</section>
+
+
+<!-- Single Project section
+================================================== -->
+<section id="single-project">
+   <div class="container">
+      <div class="row">
+
+         <div class="wow fadeInUp col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-4">
+			<div class="project-info">
+				<h4>Type of Project</h4>
+				<porig>Personal</porig>
+			</div>
+			<div class="project-info">
+				<h4>Date</h4>
+				<porig>May 2020 - Present</porig>
+			</div>
+			<div class="project-info">
+				<h4>Category</h4>
+        <ul>
+        <li><porig>Time Series Analysis</porig> </li>
+        <li> <porig>Finance</porig> </li>
+        </ul>
+			</div>
+		</div>
+
+		<div class="wow fadeInUp col-md-7 col-sm-7" data-wow-delay="0s">
+            <h2> Objective </h2>
+            <p>Forecasting from a short time series is notoriously difficult, with the relatively few data points resulting in models performing poorly out-of-sample. Additionally, the ongoing pandemic introduces a large amount of variation to the behaviour of markets. In this article, we evaluate common forecasting models in the following case study: the post-crash behaviour of AC.TO during the COVID-19 global pandemic.</p>
+            <p>How do we know whether a model whether a model is performing well on a time series? At the very minimum, it should be more accurate than trivial forecasts. While this may be a given for any moderately tuned model for time series with abundances of data, it is far from a given for short time series. </p>
+            <p>We will investigate the following time-series techniques:</p>
+              <ul>
+              <li><p>Linear Regression</p></li>
+              <li><p>Holt-Winters</p></li>
+              <li><p>Autoregressive Integrated Moving Average (ARIMA)</p></li>
+              <li><p>Random Walk ("Naive")</p></li>
+              <li><p>Historical Mean</p></li>
+              <li><p>Historical Median</p></li>
+            </ul>
+            <p>Model accuracies will be evaluated using with the following metrics:</p>
+            <ul>
+              <li><p>Root mean squared error</p></li>
+              <li><p>Mean absolute percentage error</p></li>
+            </ul>
+            <p>To provide quantitative insight into the absolute and relative errors of the forecast.</p>
+            <h2>Background</h2>
+            <p>On March 11, 2020, the World Health Organization declared the ongoing COVID-19 outbreak a pandemic. There have been over 10 million cases reported in more than 188 countries and territories as of July 2020, and the socioeconomic consequences are numerous.</p>
+            <p>Some industries, such as commercial airlines, have suffered unprecedented losses. Air Canada’s stock plummeted to 23% of its value in between January 13th and March 19th. </p>
+            <p>Global events of this scale lead to short-term volatility in the markets, causing difficulty in evaluating risk. Thus reveals the purpose of this article: to compare common forecasting models for short time series forecasting, evaluated on Canada’s largest airline’s stock price.</p>     
+
+            <h2>Methodology and Data</h2>
+            <p>We use the closing price of TSX:AC from March 19 to June 19 as our time series data, using the earliest 80% and latest 20% to train and test, respectively.</p>
+            <p>AC.TO data for 2020 is downloaded from Yahoo Finance.</p>
+
+            <h3>Linear Regression</h3>
+            <p>We choose a simple model by creating dummy variables for the day of the week and the current index of the time series data.</p>
+            <img src="images/PreProcessed.png" class="img-responsive">
+            <p>With the only consideration being that we do not use a separate variable for friday, but rather represent it with the absence of all of Monday-Thursday.</p>
+            <h4>Code</h4>
+            <pre><code>
+def plot_ols_forecast():
+    df = pd.read_csv("./src/AC_TO Pre-Processed - AC.TO.csv")
+    df['Date'] = pd.to_datetime(df['Date'])
+    ols_df = df[["Date","Monday","Tuesday","Wednesday","Thursday","Close"]]
+    ols_df["Indices"] = ols_df.index
+    df_train, df_test = split_data_test_train(ols_df)
+    reg_models.plot_ols_forecast(df_train=df_train, df_test=df_test, col="Close", summary=True)
+
+def plot_ols_forecast(df_train, df_test, col="Close", summary="True"):
+    dates = df_train["Date"].append(df_test["Date"])
+    del df_train["Date"]
+    del df_test["Date"]
+    ols_model = get_ols_model(df_train, col=col)
+    df_train["model"] = ols_model.predict(sm.add_constant(df_train.loc[:, df_train.columns!="Close"]).to_numpy())
+    df_test["forecast"] = ols_model.predict(sm.add_constant(df_test.loc[:, df_test.columns!="Close"]).to_numpy())
+    df = df_train.append(df_test)
+    df["Date"] = dates
+    df["ts"] = df[col]
+    utils.plot_forecast(df=df, title="Linear Regression Forecast", summary=summary)
+
+def get_ols_model(train_df, col, with_y_int = True):
+    values = train_df[col].to_numpy()
+    X = train_df.loc[:, train_df.columns!=col]
+    if with_y_int:
+        X = sm.add_constant((X))
+    X = X.to_numpy()
+    return sm.OLS(values, X).fit()
+            </code></pre>
+            <h4>Results</h4>
+            <img src="images/Linear_Reg.png" class="img-responsive">
+
+            <h3>Holt-Winters</h3>
+            <p>Exponential Smoothing methods may seem a natural “superior” choice for short time series, as each prediction is not largely affected by the lack of old observations due to its emphasis on recent values. This reasoning is not necessarily accurate, as a short time series will still introduce difficulties in tuning the smoothing parameters of the model. </p>
+            <p>Unlike linear regression, Holt-Winters allows us to model both seasonality and trend within the time series. We use the additive method as the amplitude of variations in this time series appear roughly constant.</p>
+            <p>We use qualitative judgement for choosing not to use the damped method: AC.TO has crashed hard, and may be currently undervalued. Thus, there is larger upside to grow in the short term, which is the timeframe of interest.</p>
+            <h4>Code</h4>
+            <pre><code>
+def plot_holt_winters_forecast():
+    df = pd.read_csv("./src/AC_TO Pre-Processed - AC.TO.csv")
+    df['Date'] = pd.to_datetime(df['Date'])
+    df_train, df_test = split_data_test_train(df)
+    ets_models.plot_hw_model(df_train, df_test, 4, col="Close", summary=True, seasonal_type="add", damped=False)
+
+def plot_hw_model(df_train, df_test, periods, col="Close", summary=True, seasonal_type='add', damped=True):
+    hw_model = ExponentialSmoothing(df_train[col], trend="add", seasonal=seasonal_type, seasonal_periods=periods, damped=damped).fit()
+    hw_predictions = hw_model.predict(start=0, end=len(df_train)+len(df_test))
+    df_train["model"] = hw_predictions[:len(df_train)]
+    df_test["forecast"] = hw_predictions[len(df_train):len(df_train) + len(df_test)]
+    df = df_train.append(df_test)
+    df["ts"] = df[col]
+    utils.plot_forecast(df=df, title="Holt-Winters Forecast", summary=summary)
+            </code></pre>
+            <h4>Results</h4>
+            <img src="images/Holt-Winters.png" class="img-responsive">
+
+            <h3>Autoregressive Integrated Moving Average (ARIMA)</h3>
+            <p>ARIMA models can be very effective for short-term forecasting. Like Holt-Winters, ARIMA is a univariate model, which performs well when underlying factors (disposable income, travel laws) do not change in behaviour. </p>
+            <p>We use a seasonal ARIMA model to attempt to capture the semi-regular spikes in the test series. ARIMA models require time series to be made stationary through differencing - below are the ACF plots for the time series and it’s first two differenced series.</p>
+            <p>In both cases, the first correlation is somewhat large; however, this is not improved when taking additional differences (and indeed, we don’t expect to have to take more than two differences for most time series).</p>
+            <p>We see that the time series is clearly not stationary. Additionally, first difference has somewhat sinusoidal autocorrelations, implying seasonality. Thus, we use a value of d=2.</p>
+            <h4>Code</h4>
+            <pre><code>
+def plot_ARIMA_forecast():
+    df = pd.read_csv("./src/AC_TO Pre-Processed - AC.TO.csv")
+    df['Date'] = pd.to_datetime(df['Date'])
+    df_train, df_test = split_data_test_train(df)
+    sm.graphics.tsa.plot_acf(df_train["Close"],lags=40)
+    ts = df_train["Close"].diff()
+    sm.graphics.tsa.plot_acf(ts[1:], lags=40)
+    sm.graphics.tsa.plot_pacf(ts[1:], lags=40)
+    ts = ts.diff()
+    sm.graphics.tsa.plot_acf(ts[2:], lags=40)
+    sm.graphics.tsa.plot_pacf(ts[2:], lags=40)
+    arima_models.plot_ARIMA_forecast(df_train=df_train, df_test=df_test, col="Close")
+
+def plot_ARIMA_forecast(df_train, df_test, col="Close", summary=True):
+    arima_model = pmdarima.auto_arima(df_train[col], exogenous=None,
+                                 seasonal=True, stationary=False,d=2,
+                                 m=4, information_criterion='aic',
+                                 error_action='ignore',trace=True)
+    if summary:
+        print("best model --> (p, d, q):",  arima_model.order, " and  (P, D, Q, s):", arima_model.seasonal_order)
+    fit_sarimax(df_train, df_test, order=arima_model.order, seasonal_order=arima_model.seasonal_order, col=col, summary=summary, figsize=(12,8))
+
+
+def fit_sarimax(df_train, df_test, order,
+                seasonal_order, figsize, col="Close", summary=True, exog_train=None,
+                exog_test=None):
+    ## train
+    model = smt.SARIMAX(df_train[col], order=order,
+                        seasonal_order=seasonal_order,
+                        exog=exog_train, enforce_stationarity=True,
+                        enforce_invertibility=True).fit()
+    df_train["model"] = model.fittedvalues
+
+    ## test
+    df_test["forecast"] = model.predict(start=len(df_train),
+                                         end=len(df_train) + len(df_test) - 1,
+                                         exog=exog_test)
+
+    ## evaluate
+    df = df_train.append(df_test)
+    df["ts"] = df["Close"]
+    utils.plot_forecast(df=df, title="Auto Arima Forecast", summary=summary)
+
+            </code></pre>
+            <h4>Results</h4>
+            <img src="images/ARIMA.png" class="img-responsive">
+
+
+            <h3>Historical Mean, Median</h3>
+            <p>These methods simply forecast future values of the series by using the historical mean and median. </p>
+            <h4>Code</h4>
+            <pre><code>
+def historical_mean():
+    df = pd.read_csv("./src/AC_TO Pre-Processed - AC.TO.csv")
+    df['Date'] = pd.to_datetime(df['Date'])
+    df_train, df_test = split_data_test_train(df)
+    ha_models.plot_historical_mean(df_train=df_train, df_test=df_test)
+
+def plot_historical_mean(df_train, df_test, col="Close", summary="True"):
+    mean = statistics.mean(df_train[col])
+    df_train["model"] = [mean] * len(df_train)
+    df_test["forecast"] = [mean] * len(df_test)
+    df = df_train.append(df_test)
+    df["ts"] = df[col]
+    utils.plot_forecast(df=df, title="Historical Mean Forecast", summary=summary)
+            </code></pre>
+            <p>With the historical mean code being similar.</p>
+            <h4>Results</h4>
+            <img src="images/Hist_Mean.png" class="img-responsive">
+            <img src="images/Hist_Median.png" class="img-responsive">
+
+            <h3>Random Walk ("Naive")</h3>
+            <p>Random walk models, similar to historical means and medians, do not make use of most of the series’ features and again serve as a point of comparison.</p>
+            <p>Here, we implement random walk with drift. The forecast, then, is made of expected values which follow that linear drift.</p>
+            <h4>Code</h4>
+            <pre><code>
+def random_walk():
+    df = pd.read_csv("./src/AC_TO Pre-Processed - AC.TO.csv")
+    df['Date'] = pd.to_datetime(df['Date'])
+    train, test = split_data_test_train(df)
+    rw_models.plot_random_walk(train, test)
+
+def plot_random_walk(df_train, df_test, col="Close", summary="True", drift="True"):
+    b = df_train[col].iloc[0]
+    m = (df_train[col].iloc[-1] - df_train[col].iloc[0]) / len(df_train)
+    df_train["model"] = df_train.index * m + b
+    df_test["forecast"] = (df_test.index) * m + b
+    df = df_train.append(df_test)
+    df["ts"] = df["Close"]
+    utils.plot_forecast(df=df, title="Random Walk Forecast", summary=summary)
+            </code></pre>
+            <h4>Results</h4>
+            <img src="images/Random_Walk.png" class="img-responsive">
+
+            <h2>Results and Discussion</h2>
+            <p>Here, we chart the performance metrics of the models:</p>
+
+            <img src="images/Results.png" class="img-responsive">
+
+            <p>All these models performed rather poorly on the test data. This is reflected in the residual densities as well - every model seemed to under-forecast the time series, with residual distributions centered around some positive nonzero value.</p>
+
+            <p>The linear regression model performed the best, followed by Historical Mean, Median, and Random Walk. Interestingly, ARIMA and Holt-Winters, the most “complex” of the models investigated, performed the worst. This is consistent with a 2015 study where Kesten C. Green, and J. Scott Armstrong examined 32 papers comparing accuracies of forecasts:</p>
+
+            <blockquote>Eighty-one percent of the comparisons found that forecasts from simple methods were more accurate than, or similarly accurate to, those from complex methods. Averaged across the 25 papers that provide quantitative comparisons, the errors of forecasts from complex methods were 27 percent greater than the errors of forecasts from simple methods. </blockquote>
+
+            <p>The comparison conducted in this article, of course, is just one short time series and is not nearly enough to make any generalizations on the efficacy of the mentioned models. Rather, it provides the following insight for those unaware: pursuing complexity may not lead to improved results.</p>
+
+
+
+
+            <p> You can view the full source code on <a href="">github</a>. </p>
+
+		</div>
+
+      </div>
+   </div>
+</section>
+
+
+<!-- Footer section
+================================================== -->
+<footer>
+	<div class="container">
+		<div class="row">
+
+			<div class="col-md-12 col-sm-12">
+				<p class="wow fadeInUp"  data-wow-delay="0.3s">Copyright © 2016 Your Company Name - Designed by Tooplate</p>
+				<ul class="social-icon wow fadeInUp"  data-wow-delay="0.6s">
+					<li><a href="#" class="fa fa-facebook"></a></li>
+					<li><a href="#" class="fa fa-twitter"></a></li>
+					<li><a href="#" class="fa fa-dribbble"></a></li>
+					<li><a href="#" class="fa fa-behance"></a></li>
+					<li><a href="#" class="fa fa-google-plus"></a></li>
+				</ul>
+			</div>
+			
+		</div>
+	</div>
+</footer>
+
+
+<!-- Javascript 
+================================================== -->
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/wow.min.js"></script>
+<script src="js/custom.js"></script>
+
+</body>
+</html>
